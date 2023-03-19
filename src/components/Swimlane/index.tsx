@@ -4,14 +4,20 @@ import { StyledSwimlane, StyledSwimlaneTitle } from "./StyledSwimlane";
 
 interface IProps {
   title: string;
-  data: APIPerson;
+  prospects: APIPerson[];
 }
 
-export const Swimlane = ({ title, data }: IProps) => {
+export const Swimlane = ({ title, prospects }: IProps) => {
+  if (!prospects) return null;
+
+  const renderCards = () =>
+    prospects.map(prospect => <Card prospect={prospect} />)
+
   return <StyledSwimlane>
     <StyledSwimlaneTitle>
       { title }
     </StyledSwimlaneTitle>
-    <Card user={data}>dsada</Card>
+
+    { renderCards() }
   </StyledSwimlane>
 };

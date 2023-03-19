@@ -20,6 +20,7 @@ export type APIPerson = {
   email: string
   phone: string
   cell: string
+  processStage: string;
   picture: {
     large: string
     thumbnail: string

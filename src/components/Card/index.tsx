@@ -3,13 +3,13 @@ import {  } from "../Swimlane/StyledSwimlane";
 import { StyledCard, StyledCardColumn, StyledCardRow, StyledName, StyledProfilePicture, StyledSwimlaneEmail } from "./StyledCard";
 
 interface IProps {
-  user: APIPerson;
+  prospect: APIPerson;
 }
 
-export const Card = ({ user }: IProps) => {
-  if (!user) return null;
+export const Card = ({ prospect }: IProps) => {
+  if (!prospect) return null;
 
-  const { picture, name, dob, email } = user;
+  const { picture, name, dob, email } = prospect;
 
   return <StyledCard>
     <StyledCardRow>

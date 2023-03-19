@@ -7,6 +7,7 @@ export const StyledCard = styled.div`
   border-radius: 4px;
   display: flex;
   cursor: pointer;
+  margin-bottom: 5px;
   
   ${boxShadow}
   ${greyBorder}
