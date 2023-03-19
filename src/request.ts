@@ -4,6 +4,10 @@ export type APIPerson = {
   name: { first: string; last: string; title: string }
   login: { uuid: string }
   id: number;
+  dob: {
+    age: number;
+    date: string;
+  }
   location: {
     street: {
       number: number

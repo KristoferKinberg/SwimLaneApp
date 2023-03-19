@@ -18,6 +18,9 @@ From https://randomuser.me/
 - [ ] Create basic layout.
 - [ ] Create components: Card, Swimlane, SideModal, Button,
 - [x] Create fake data and fetch function
+- [ ] Implement drag and drop
+- [ ] 
+- [ ] 
 - [ ] 
 
 # Log
@@ -28,7 +31,13 @@ management but might try something smaller and more nimble.
 ---
 
 Created a node script holding functions for fetching data from api, 
-and for extending fetched data to match application features.
+and for extending fetched data to match application features. 
+Script creates a JSON-file that holds the data and is then loaded by
+application through mocked "api-request", this to avoid hitting
+request limits.
 
 ---
 
+Few components have been made, Card and Swimlane. Not sure about design. Will leave it for 
+now and return to design part later. Will focus on getting drag and drop
+functionality properly implemented.
