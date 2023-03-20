@@ -11,7 +11,7 @@ export const Swimlane = ({ title, prospects }: IProps) => {
   if (!prospects) return null;
 
   const renderCards = () =>
-    prospects.map(prospect => <Card prospect={prospect} />)
+    prospects.map(prospect => <Card prospect={prospect} key={prospect.id} />)
 
   return <StyledSwimlane>
     <StyledSwimlaneTitle>

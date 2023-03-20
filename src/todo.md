@@ -16,10 +16,10 @@ From https://randomuser.me/
 
 - [x] Add libs.
 - [ ] Create basic layout.
-- [ ] Create components: Card, Swimlane, SideModal, Button,
+- [ ] Create components: Card, Swimlane, SideModal, Button, Drawer
 - [x] Create fake data and fetch function
 - [ ] Implement drag and drop
-- [ ] 
+- [ ] Implement "edit user" functionality
 - [ ] 
 - [ ] 
 
@@ -41,3 +41,12 @@ request limits.
 Few components have been made, Card and Swimlane. Not sure about design. Will leave it for 
 now and return to design part later. Will focus on getting drag and drop
 functionality properly implemented.
+
+--- 
+
+Drag and drop got paused. Decided to get most of the UI in place first and add
+functionality later. Created new "Drawer" component. If there is time, I will animate
+it aswell. Also cleaned the data a bit. Only fetching data that I use now.
+Might reformat it a little bit aswell.
+Still thinking if I should implement redux. Might use context instead however.
+

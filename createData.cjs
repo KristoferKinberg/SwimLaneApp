@@ -1,8 +1,16 @@
 const fs = require('fs');
 
 const API_URL = "https://randomuser.me/api/"
-const API_RESULTS = 150
+const API_RESULTS = 30
 const API_SEED = "3c3b1938e7a5f2f0"
+const INCLUDED_FIELDS = [
+  'name',
+  'dob',
+  'picture',
+  'email',
+  'adress'
+];
+
 const dataAddition = {
   processStage: [
     "contact",
@@ -13,8 +21,12 @@ const dataAddition = {
   ]
 };
 
+const concatFields = () => INCLUDED_FIELDS.reduce((concatedFields, field, index) => {
+  return `${concatedFields}${field}${INCLUDED_FIELDS.length !== (index + 1) ? ',' : ''}`;
+}, '&inc=');
+
 async function fetchAPIPersons() {
-  return fetch(`${API_URL}?results=${API_RESULTS}&seed=${API_SEED}`)
+  return fetch(`${API_URL}?results=${API_RESULTS}&seed=${API_SEED}${concatFields()}`)
     .then(x => x.json())
     .then(x => x.results)
 }
