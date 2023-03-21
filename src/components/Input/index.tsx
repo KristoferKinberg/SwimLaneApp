@@ -1,3 +1,4 @@
+import Select from "./Select";
 import {StyledInput, StyledInputWrapper, StyledLabel } from "./StyledInput";
 
 interface IProps {
@@ -16,4 +17,7 @@ const Input = ({ label, onChange, value, type = "text" }: IProps) => {
   </StyledInputWrapper>
 };
 
-export default Input;
+export {
+  Input,
+  Select,
+};

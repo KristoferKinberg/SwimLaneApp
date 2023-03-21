@@ -1,22 +1,43 @@
+import React from "react";
+import { useRecoilState } from "recoil";
 import { APIPerson } from "../../request";
-import {  } from "../Swimlane/StyledSwimlane";
+import draftProspectState from "../../state/draftProspect";
+import { getAgeBasedOnBirthDate } from "../../utils/calcultaAge";
 import { StyledCard, StyledCardColumn, StyledCardRow, StyledName, StyledProfilePicture, StyledSwimlaneEmail } from "./StyledCard";
 
 interface IProps {
   prospect: APIPerson;
+  onClick: () => any;
 }
 
-export const Card = ({ prospect }: IProps) => {
+export const Card = ({ prospect, onClick }: IProps) => {
   if (!prospect) return null;
+  const [draftProspect, updateDraftProspect] = useRecoilState(draftProspectState);
 
-  const { picture, name, dob, email } = prospect;
+  console.log(draftProspect);
+  const setProspect = () => {
+    onClick();
+    updateDraftProspect({
+      isNew: false,
+      draftProspect: prospect
+    });
+  }
 
-  return <StyledCard>
+  const {
+    picture,
+    firstname,
+    lastname,
+    email,
+    dob,
+  } = prospect;
+  const age = getAgeBasedOnBirthDate(dob)
+
+  return <StyledCard onClick={setProspect}>
     <StyledCardRow>
-      <StyledProfilePicture src={picture.thumbnail}/>
+      <StyledProfilePicture src={picture}/>
       <StyledCardColumn>
         <StyledName>
-          { name.first } { name.last }, { dob.age }
+          { firstname } { lastname }, { age }
         </StyledName>
         <StyledSwimlaneEmail>
           { email }

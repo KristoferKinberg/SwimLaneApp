@@ -1,8 +1,7 @@
 import data from './data.json';
 
-export type APIPerson = {
+/**export type APIPerson = {
   name: { first: string; last: string; title: string }
-  login: { uuid: string }
   id: number;
   dob: {
     age: number;
@@ -17,20 +16,30 @@ export type APIPerson = {
     city: string
     country: string
   }
-  email: string
-  phone: string
-  cell: string
   processStage: string;
   picture: {
     large: string
     thumbnail: string
   }
+}*/
+export type APIPerson = {
+  id: number;
+  title: string;
+  firstname: string;
+  lastname: string;
+  picture: string;
+  email: string;
+  processStage: string;
+  dob: string;
+  address: string;
 }
 
 export const fetchProducts = async (): Promise<APIPerson[]> => {
   return await new Promise((resolve, reject) => {
     setTimeout(() => {
+      // @ts-ignore
       resolve((data));
+      console.log(data);
       reject({message: 'Error'});
     }, 750);
   });

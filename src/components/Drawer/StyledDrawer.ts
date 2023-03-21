@@ -23,7 +23,7 @@ export const StyledCloseButton = styled.span`
 `;
 
 export const StyledDrawer = styled.div`
-  background: #fff;
+  background: #f4f4f4;
   height: 100%;
   max-width: 300px;
   width: 90%;

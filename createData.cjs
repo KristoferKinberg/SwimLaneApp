@@ -1,14 +1,14 @@
 const fs = require('fs');
 
 const API_URL = "https://randomuser.me/api/"
-const API_RESULTS = 30
+const API_RESULTS = 10
 const API_SEED = "3c3b1938e7a5f2f0"
 const INCLUDED_FIELDS = [
   'name',
   'dob',
   'picture',
   'email',
-  'adress'
+  'location'
 ];
 
 const dataAddition = {
@@ -44,9 +44,21 @@ const createData = async () => {
       id: index,
       processStage: userRecruitmentStage
     }
-  });
+  })
 
-  fs.writeFile('./src/data.json', JSON.stringify(data), err => {
+  const cleanedData = data.map(({ id, name, dob, picture, email, adress, processStage, location }) => ({
+    id,
+    title: name.title,
+    firstname: name.first,
+    lastname: name.last,
+    picture: picture.thumbnail,
+    email,
+    processStage,
+    dob: dob.date,
+    address: `${location.street.name} ${location.street.number}`,
+  }));
+
+  fs.writeFile('./src/data.json', JSON.stringify(cleanedData), err => {
     if (err) {
       console.error(err);
     }

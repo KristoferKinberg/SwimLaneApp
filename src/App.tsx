@@ -5,35 +5,34 @@ import './index.css';
 import { Swimlane } from "./components/Swimlane";
 import Button from "./components/Button";
 import Drawer from "./components/Drawer";
-import Input from "./components/Input";
+import {Input, Select} from "./components/Input/index";
+import { processStages } from "./constants";
+import { stages } from "./Views/stages";
+import EditCandidateDrawer from "./Views/Start/EditCandidateDrawer";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from 'recoil';
+import draftProspectState, { defaultState } from './state/draftProspect';
+import prospectsState, { IProspects } from './state/prospects';
+import useDraftProspect from "./hooks/useDraftProspect";
+import useDrawer from "./hooks/useDrawers";
 
 interface ICandidatesObject {
   [key: string]: APIPerson;
 }
 
-const processStages = [
-  "contact",
-  "dialog",
-  "interview",
-  "offer",
-  "finished"
-];
-
-const draftUserValues = {
-  first: '',
-  last: '',
-  age: ''
-};
-
 const App = () => {
-  const [data, setData] = useState<ICandidatesObject>({});
-  const [drawerActive, setDrawerActive] = useState<boolean>(false);
-  const [draftUser, setDraftUser] = useState<typeof draftUserValues | null>(null);
+  //const [drawerActive, setDrawerActive] = useState<boolean>(false);
+  const { draftProspect, isNew, setProspect } = useDraftProspect();
+  const [prospects, setProspects] = useRecoilState<IProspects>(prospectsState);
+  const { isActive, setDrawerState } = useDrawer();
+  const candidateEditorDrawerActive = isActive('editCandidateDrawer');
 
-  const _setDrawerActive = (drawerState: boolean) => () => {
-    setDraftUser(draftUserValues);
-    setDrawerActive(drawerState);
-  }
+  const processStagesArray = Object.keys(processStages);
 
   const objectifyData = (data: APIPerson[]) => data.reduce((canditates, candidate) => ({
     ...canditates,
@@ -42,13 +41,13 @@ const App = () => {
 
   useEffect(() => {
     fetchProducts().then((res) => {
-      setData(objectifyData(res));
+      setProspects(objectifyData(res));
       console.log(res);
     });
   }, []);
 
-  const sortedData = Object.values(data)
-    ? Object.values(data).reduce<{ [key: string]: APIPerson[] }>((acc, curr) => {
+  const sortedData = Object.values(prospects)
+    ? Object.values(prospects).reduce<{ [key: string]: APIPerson[] }>((acc, curr) => {
     return {
       ...acc,
       [curr.processStage]: [
@@ -59,54 +58,35 @@ const App = () => {
   }, {})
   : null;
 
-  const renderSwimlanes = () => processStages.map((swimlane, index) => {
+  const renderSwimlanes = () => Object.keys(processStages).map((swimlane, index) => {
     if (!sortedData) return null;
 
     return <Swimlane
-      key={processStages[index]}
-      title={processStages[index]}
-      prospects={sortedData[processStages[index]]}
+      key={stages[index].value}
+      title={stages[index].label}
+      prospects={sortedData[stages[index].value]}
+      onClick={editCandidate}
     ></Swimlane>
     }
   );
 
-  const updateDraftUser = (key: string) => (value: string) => {
-    if (!draftUser) return;
+  const editCandidate = (user: APIPerson) => () => {
+    setDrawerState('editCandidateDrawer', true);
+  }
 
-    setDraftUser({
-      ...draftUser,
-      [key]: value
-    })
-  };
-
-  const renderInput = (label: string, key: string) => {
-    if (!draftUser) return null;
-
-    return <>
-      <Input
-        label={label}
-        onChange={updateDraftUser(key)}
-        // @ts-ignore
-        value={draftUser[key]}
-      />
-    </>
+  const createCandidate = () => {
+    setDrawerState('editCandidateDrawer', true);
+    setProspect(true, defaultState.draftProspect);
   }
 
   return (
     <StyledApp>
-      <Drawer active={drawerActive} onClose={_setDrawerActive(false)}>
-        <>
-          { renderInput('Firstname', 'first') }
-          { renderInput('Lastname', 'last') }
-          { renderInput('Age', 'age') }
-          { renderInput('Address', 'adress') }
-        </>
-      </Drawer>
+      <EditCandidateDrawer active={candidateEditorDrawerActive} close={() => setDrawerActive(false)} />
 
       <StyledHeader>
         <h1>Crowd Collective Candites</h1>
 
-        <Button label={'Add candidate'} onClick={_setDrawerActive(true)} />
+        <Button label={'Add candidate'} onClick={createCandidate} />
       </StyledHeader>
 
       <StyledSwimlaneContainer>

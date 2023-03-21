@@ -4,10 +4,11 @@ import { StyledDrawer, StyledDrawerContainer, StyledOverlay, StyledCloseButton, 
 interface IProps {
   active: boolean;
   children: JSX.Element;
+  footer: JSX.Element;
   onClose: () => any;
 }
 
-const Drawer = ({ active, children, onClose }: IProps) => {
+const Drawer = ({ active, children, footer, onClose }: IProps) => {
   if (!active) return null;
 
   return <StyledDrawerContainer>
@@ -22,7 +23,7 @@ const Drawer = ({ active, children, onClose }: IProps) => {
       </StyledDrawerBody>
 
       <StyledDrawerFooter>
-        <Button label={'Create candidate'} onClick={() => {}} />
+        {footer}
       </StyledDrawerFooter>
     </StyledDrawer>
 
