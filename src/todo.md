@@ -18,11 +18,15 @@ From https://randomuser.me/
 - [ ] Create basic layout.
 - [ ] Create components: Card, Swimlane, SideModal, Button, Drawer
 - [x] Create fake data and fetch function
-- [ ] Implement drag and drop
+- [x] Implement drag and drop
 - [x] Create fake API requests implementing localstorage for persistent state.
 - [x] Implement "edit user" functionality
 - [x] Implement "create user" functionality
-- [ ] 
+- [ ] Implement search
+- [ ] Implement sort
+- [ ] Set restrictions when moving to offer, prompt offer.
+- [ ] Add ability to remove.
+- [ ] Indicate result for finished lane, hired or not.
 
 # Log
 
@@ -64,3 +68,10 @@ Made fake API request and implemented localStorage usage. It's now possible to c
 If there is time left, i will implement delete as well. Mostly UI part that might take time.
 
 ---
+
+Had some issues with drag and drop, which turned out to be 
+
+--- 
+
+Drag and drop implemented. Since time is running out, I'm going to mainly focus on requested features before we start
+getting creative. Do want some time to clean stuff up as well.

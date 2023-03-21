@@ -17,4 +17,5 @@ export const StyledInput = styled.input`
   height: 35px;
   border: 1px solid #cecece;
   width: 100%;
+  ${({ overrideStyles }: { overrideStyles: string}) => overrideStyles}
 `;

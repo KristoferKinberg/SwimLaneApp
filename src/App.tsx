@@ -1,6 +1,13 @@
 import {useEffect, useState} from "react";
 import {IProspect, fetchProducts} from "./request";
-import { StyledApp, StyledHeader, StyledSwimlaneContainer } from "./StyledApp";
+import {
+  StyledApp,
+  StyledHeader,
+  StyledInputIconWrapper,
+  StyledInputWrapper,
+  StyledSwimlaneContainer,
+  StyledTitle
+} from "./StyledApp";
 import './index.css';
 import { Swimlane } from "./components/Swimlane";
 import Button from "./components/Button";
@@ -15,6 +22,8 @@ import useEditCandidateDrawer from "./hooks/useEditCandidateDrawer";
 import useProspects from "./hooks/useProspects";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
+import {Input} from "./components/Input";
+import { Search } from 'react-feather';
 
 interface ICandidatesObject {
   [key: string]: IProspect;
@@ -24,6 +33,7 @@ const App = () => {
   const { draftProspect, isNew, setProspect } = useDraftProspect();
   const { prospects, setProspects } = useProspects();
   const { createProspect } = useEditCandidateDrawer();
+  const [searchStr, setSearchStr] = useState('');
 
   const processStagesArray = Object.keys(processStages);
 
@@ -38,8 +48,18 @@ const App = () => {
     });
   }, []);
 
-  const sortedData = Object.values(prospects)
-    ? Object.values(prospects).reduce<{ [key: string]: IProspect[] }>((acc, curr) => {
+  const applySearch = () => Object.values(prospects).filter(prospect => {
+    const { id, picture, ...rest } = prospect;
+    console.log(Object.values(rest).join('/'))
+    return Object.values(rest).join('/').includes(searchStr);
+  });
+
+  const searchedData = searchStr.length
+    ? objectifyData(applySearch())
+    : prospects;
+
+  const swimlanePreppedData = Object.values(prospects)
+    ? Object.values(searchedData).reduce<{ [key: string]: IProspect[] }>((acc, curr) => {
     return {
       ...acc,
       [curr.processStage]: [
@@ -51,13 +71,14 @@ const App = () => {
   : null;
 
   const renderSwimLanes = () => Object.keys(processStages).map((swimlane, index) => {
-    if (!sortedData) return null;
+    if (!swimlanePreppedData) return null;
+    const { value, label } = stages[index];
 
     return <Swimlane
-      key={stages[index].value}
-      value={stages[index].value}
-      title={stages[index].label}
-      prospects={sortedData[stages[index].value]}
+      key={value}
+      value={value}
+      title={label}
+      prospects={swimlanePreppedData[value]}
     />
     }
   );
@@ -67,8 +88,13 @@ const App = () => {
       <EditCandidateDrawer />
 
       <StyledHeader>
-        <h1>Crowd Collective Candites</h1>
-
+        <StyledTitle>Crowd Collective Candidates</StyledTitle>
+        <StyledInputWrapper>
+          <StyledInputIconWrapper>
+            <Search color={'#333'}/>
+          </StyledInputIconWrapper>
+          <Input value={searchStr} onChange={setSearchStr} overrideStyles="border: 2px solid #333"/>
+        </StyledInputWrapper>
         <Button label={'Add candidate'} onClick={createProspect} />
       </StyledHeader>
 
