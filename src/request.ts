@@ -83,4 +83,20 @@ export const createProspectReq = async (prospect: IP): Promise<IProspect> => {
   });
 }
 
+export const removeProspectReq = async (prospect: IProspect): Promise<IProspect[]> => {
+  return await new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const localStorageData = window.localStorage.getItem(CC_PROSPECTS);
+      const d = localStorageData
+        ? JSON.parse(localStorageData)
+        : data;
 
+      const newData = d.filter(({ id }: IProspect) => id !== prospect.id);
+      window.localStorage.setItem(CC_PROSPECTS, JSON.stringify(newData));
+
+      // @ts-ignore
+      resolve(newData);
+      reject({message: 'Error'});
+    }, 25);
+  });
+}

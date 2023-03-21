@@ -8,6 +8,7 @@ export const StyledCard = styled.div`
   display: flex;
   cursor: pointer;
   margin-bottom: 5px;
+  width: 100%;
   
   ${({ isDragging }: { isDragging: boolean }) => isDragging && 'opacity: 0;'}
   
@@ -19,11 +20,14 @@ export const StyledCardRow = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
+  justify-content: space-between;
+  flex: 1;
 `;
 
 export const StyledCardColumn = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const StyledProfilePicture = styled.img`
