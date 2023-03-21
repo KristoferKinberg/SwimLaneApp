@@ -2,11 +2,11 @@ import {useRecoilState} from "recoil";
 import showEditCandidateDrawerState from '../state/showEditCandidateDrawer'
 import useDraftProspect from "./useDraftProspect";
 import { defaultState } from '../state/draftProspect';
-import {IProspect} from "../request";
+import {IProspect, updateProspectReq, createProspectReq} from "../request";
 import useProspects from "./useProspects";
 
 const useEditCandidateDrawer = () => {
-  const { draftProspect, setProspect } = useDraftProspect();
+  const { draftProspect, setProspect, isNew } = useDraftProspect();
   const { saveProspect } = useProspects();
   const [editCandidateDrawer, showEditCandidateDrawer] = useRecoilState(showEditCandidateDrawerState);
 
@@ -29,9 +29,16 @@ const useEditCandidateDrawer = () => {
     hide();
   }
 
+  const getSaveOrUpdate = () => isNew
+    ? createProspectReq
+    : updateProspectReq;
+
   const save = () => {
-    saveProspect(draftProspect);
-    hide();
+    getSaveOrUpdate()(draftProspect)
+      .then(() => {
+        saveProspect(draftProspect);
+        hide();
+      });
   }
 
   return {

@@ -1,5 +1,6 @@
 import { StyledInputWrapper, StyledLabel } from "../StyledInput";
 import { StyledSelect } from "./StyledSelect";
+import React from "react";
 
 type IOption = {
   value: string;
@@ -14,14 +15,14 @@ interface IProps {
 }
 
 const Select = ({ label, onChange, selected, options }: IProps) => {
-  const _onChange = ({ target: { value }}: React.ChangeEvent<HTMLInputElement>) => onChange(value);
+  const _onChange = ({ target: { value }}: React.ChangeEvent<HTMLSelectElement>) => onChange(value);
 
   const renderRadioButtons = () =>
-    options.map(({ value, label }) => <option value={value}>{label}</option>);
+    options.map(({ value, label }) => <option key={value} value={value}>{label}</option>);
 
   return <StyledInputWrapper>
-    <StyledLabel htmlFor="">{label}</StyledLabel>
-    <StyledSelect>
+    <StyledLabel>{label}</StyledLabel>
+    <StyledSelect value={selected} onChange={_onChange}>
       { renderRadioButtons() }
     </StyledSelect>
   </StyledInputWrapper>

@@ -19,8 +19,9 @@ From https://randomuser.me/
 - [ ] Create components: Card, Swimlane, SideModal, Button, Drawer
 - [x] Create fake data and fetch function
 - [ ] Implement drag and drop
-- [ ] Implement "edit user" functionality
-- [ ] 
+- [x] Create fake API requests implementing localstorage for persistent state.
+- [x] Implement "edit user" functionality
+- [x] Implement "create user" functionality
 - [ ] 
 
 # Log
@@ -50,3 +51,16 @@ it aswell. Also cleaned the data a bit. Only fetching data that I use now.
 Might reformat it a little bit aswell.
 Still thinking if I should implement redux. Might use context instead however.
 
+--- 
+
+Decided to give Recoil a try for state management! Worked like a charm. Redux feels a bit overkill for an 
+application as small as this one, and been wanting to try Recoil anyway. It seemed like a lot more suiting option
+for this application. Tried to combine encapsulate it nicely within hooks. Not sure how it will turn out, but 
+kind of like it so far! 
+
+---
+
+Made fake API request and implemented localStorage usage. It's now possible to create and update new prospects. 
+If there is time left, i will implement delete as well. Mostly UI part that might take time.
+
+---

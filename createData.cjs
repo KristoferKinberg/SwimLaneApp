@@ -1,4 +1,5 @@
 const fs = require('fs');
+const {generateID} = require("./src/utils/utils");
 
 const API_URL = "https://randomuser.me/api/"
 const API_RESULTS = 10
@@ -41,7 +42,7 @@ const createData = async () => {
 
     return {
       ...user,
-      id: index,
+      id: generateID(),
       processStage: userRecruitmentStage
     }
   })

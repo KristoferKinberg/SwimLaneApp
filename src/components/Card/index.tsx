@@ -2,7 +2,7 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import { IProspect } from "../../request";
 import draftProspectState from "../../state/draftProspect";
-import { getAgeBasedOnBirthDate } from "../../utils/calcultaAge";
+import { getAgeBasedOnBirthDate } from "../../utils/utils";
 import { StyledCard, StyledCardColumn, StyledCardRow, StyledName, StyledProfilePicture, StyledSwimlaneEmail } from "./StyledCard";
 import useEditCandidateDrawer from "../../hooks/useEditCandidateDrawer";
 

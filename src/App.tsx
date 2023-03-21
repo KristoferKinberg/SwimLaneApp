@@ -5,17 +5,9 @@ import './index.css';
 import { Swimlane } from "./components/Swimlane";
 import Button from "./components/Button";
 import Drawer from "./components/Drawer";
-import {Input, Select} from "./components/Input/index";
 import { processStages } from "./constants";
 import { stages } from "./Views/stages";
 import EditCandidateDrawer from "./Views/Start/EditCandidateDrawer";
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from 'recoil';
 import draftProspectState, { defaultState } from './state/draftProspect';
 import prospectsState, { IProspects } from './state/prospects';
 import useDraftProspect from "./hooks/useDraftProspect";

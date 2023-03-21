@@ -51,7 +51,7 @@ const EditCandidateDrawer = () => {
 
       <Select
         label='Stage'
-        onChange={_updateDraftUser('stage')}
+        onChange={_updateDraftUser('processStage')}
         selected={draftProspect.processStage}
         options={stages}
       />
