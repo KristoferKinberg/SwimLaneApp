@@ -48,15 +48,13 @@ const createData = async () => {
     }
   })
 
-  const cleanedData = data.map(({ id, name, dob, picture, email, adress, processStage, location }) => ({
+  const cleanedData = data.map(({ id, name, picture, email, adress, processStage, location }) => ({
     id,
-    title: name.title,
     firstname: name.first,
     lastname: name.last,
     picture: picture.thumbnail,
     email,
     processStage,
-    dob: dob.date,
     address: `${location.street.name} ${location.street.number}`,
   }));
 

@@ -2,7 +2,6 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import { IProspect } from "../../request";
 import draftProspectState from "../../state/draftProspect";
-import { getAgeBasedOnBirthDate } from "../../utils/utils";
 import { StyledCard, StyledCardColumn, StyledCardRow, StyledName, StyledProfilePicture, StyledSwimlaneEmail } from "./StyledCard";
 import useEditCandidateDrawer from "../../hooks/useEditCandidateDrawer";
 import {ItemTypes} from "../../draggableItemTypes";
@@ -32,16 +31,14 @@ export const Card = ({ prospect }: IProps) => {
     firstname,
     lastname,
     email,
-    dob,
   } = prospect;
-  const age = getAgeBasedOnBirthDate(dob)
 
   return <StyledCard onClick={setProspect} ref={drag} isDragging={isDragging}>
     <StyledCardRow>
       <StyledProfilePicture src={picture}/>
       <StyledCardColumn>
         <StyledName>
-          { firstname } { lastname }, { age }
+          { firstname } { lastname }
         </StyledName>
         <StyledSwimlaneEmail>
           { email }

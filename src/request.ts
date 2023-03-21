@@ -9,7 +9,6 @@ export type IP = {
   picture: string;
   email: string;
   processStage: string;
-  dob: string;
   address: string;
 }
 
