@@ -1,7 +1,7 @@
 import { atom } from "recoil";
-import { APIPerson } from "../request";
+import { IProspect } from "../request";
 
-export type IProspects = Record<string, APIPerson>;
+export type IProspects = Record<number, IProspect>;
 
 export default atom({
   key: 'prospects',

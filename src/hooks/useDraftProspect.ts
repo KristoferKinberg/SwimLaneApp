@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { APIPerson } from "../request";
+import { IProspect } from "../request";
 import draftProspectState, { defaultState } from '../state/draftProspect';
 
 const useDraftProspect = () => {
@@ -10,7 +10,7 @@ const useDraftProspect = () => {
     isNew,
   });
 
-  const setProspect = (newProspect: boolean, prospect: APIPerson) => updateDraftProspect({
+  const setProspect = (newProspect: boolean, prospect: IProspect) => updateDraftProspect({
     draftProspect: prospect,
     isNew: newProspect,
   });

@@ -3,19 +3,16 @@ import Drawer from "../../components/Drawer";
 import { Input, Select } from "../../components/Input";
 import { stages } from "../stages";
 import draftProspectState from '../../state/draftProspect'
-import { useRecoilState } from "recoil";
+import {atom, useRecoilState} from "recoil";
 import Button from "../../components/Button";
 import prospectsState, { IProspects } from "../../state/prospects";
 import useDraftProspect from "../../hooks/useDraftProspect";
+import useEditCandidateDrawer from "../../hooks/useEditCandidateDrawer";
 
-interface IProps {
-  active: boolean;
-  close: () => any;
-}
-
-const EditCandidateDrawer = ({ active, close }: IProps) => {
+const EditCandidateDrawer = () => {
   const { draftProspect, isNew, updateProspect } = useDraftProspect();
   const [prospects, setProspects] = useRecoilState<IProspects>(prospectsState);
+  const { visible, cancel, save } = useEditCandidateDrawer()
 
   const _updateDraftUser = (key: string) => (value: string) => {
     if (!draftProspect) return;
@@ -39,19 +36,12 @@ const EditCandidateDrawer = ({ active, close }: IProps) => {
     </>
   }
 
-  const saveUser = () => {
-    setProspects({
-      ...prospects,
-      [draftProspect.id]: draftProspect,
-    });
-  }
-
   const renderButton = () => isNew
-    ? <Button label={'Create'} onClick={saveUser} />
-    : <Button label={'Save'} onClick={saveUser} />
+    ? <Button label={'Create'} onClick={save} />
+    : <Button label={'Save'} onClick={save} />
 
 
-  return <Drawer active={active} onClose={close} footer={renderButton()}>
+  return <Drawer active={visible} onClose={cancel} footer={renderButton()}>
     <>
       { renderInput('Firstname', 'firstname') }
       { renderInput('Lastname', 'lastname') }

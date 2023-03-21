@@ -22,7 +22,7 @@ import data from './data.json';
     thumbnail: string
   }
 }*/
-export type APIPerson = {
+export type IProspect = {
   id: number;
   title: string;
   firstname: string;
@@ -34,7 +34,7 @@ export type APIPerson = {
   address: string;
 }
 
-export const fetchProducts = async (): Promise<APIPerson[]> => {
+export const fetchProducts = async (): Promise<IProspect[]> => {
   return await new Promise((resolve, reject) => {
     setTimeout(() => {
       // @ts-ignore

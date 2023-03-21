@@ -1,9 +1,9 @@
 import { atom } from "recoil";
-import { APIPerson } from "../request";
+import { IProspect } from "../request";
 
 interface IDraftProspect {
   isNew: boolean;
-  draftProspect: APIPerson;
+  draftProspect: IProspect;
 }
 
 const defaultState: IDraftProspect = {

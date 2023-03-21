@@ -1,27 +1,21 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { APIPerson } from "../../request";
+import { IProspect } from "../../request";
 import draftProspectState from "../../state/draftProspect";
 import { getAgeBasedOnBirthDate } from "../../utils/calcultaAge";
 import { StyledCard, StyledCardColumn, StyledCardRow, StyledName, StyledProfilePicture, StyledSwimlaneEmail } from "./StyledCard";
+import useEditCandidateDrawer from "../../hooks/useEditCandidateDrawer";
 
 interface IProps {
-  prospect: APIPerson;
-  onClick: () => any;
+  prospect: IProspect;
 }
 
-export const Card = ({ prospect, onClick }: IProps) => {
+export const Card = ({ prospect }: IProps) => {
   if (!prospect) return null;
-  const [draftProspect, updateDraftProspect] = useRecoilState(draftProspectState);
 
-  console.log(draftProspect);
-  const setProspect = () => {
-    onClick();
-    updateDraftProspect({
-      isNew: false,
-      draftProspect: prospect
-    });
-  }
+  const { updateProspect } = useEditCandidateDrawer();
+
+  const setProspect = () => updateProspect(prospect);
 
   const {
     picture,

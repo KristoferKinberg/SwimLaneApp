@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {APIPerson, fetchProducts} from "./request";
+import {IProspect, fetchProducts} from "./request";
 import { StyledApp, StyledHeader, StyledSwimlaneContainer } from "./StyledApp";
 import './index.css';
 import { Swimlane } from "./components/Swimlane";
@@ -19,22 +19,21 @@ import {
 import draftProspectState, { defaultState } from './state/draftProspect';
 import prospectsState, { IProspects } from './state/prospects';
 import useDraftProspect from "./hooks/useDraftProspect";
-import useDrawer from "./hooks/useDrawers";
+import useEditCandidateDrawer from "./hooks/useEditCandidateDrawer";
+import useProspects from "./hooks/useProspects";
 
 interface ICandidatesObject {
-  [key: string]: APIPerson;
+  [key: string]: IProspect;
 }
 
 const App = () => {
-  //const [drawerActive, setDrawerActive] = useState<boolean>(false);
   const { draftProspect, isNew, setProspect } = useDraftProspect();
-  const [prospects, setProspects] = useRecoilState<IProspects>(prospectsState);
-  const { isActive, setDrawerState } = useDrawer();
-  const candidateEditorDrawerActive = isActive('editCandidateDrawer');
+  const { prospects, setProspects } = useProspects();
+  const { createProspect } = useEditCandidateDrawer();
 
   const processStagesArray = Object.keys(processStages);
 
-  const objectifyData = (data: APIPerson[]) => data.reduce((canditates, candidate) => ({
+  const objectifyData = (data: IProspect[]) => data.reduce((canditates, candidate) => ({
     ...canditates,
     [candidate.id]: candidate
   }), {});
@@ -47,7 +46,7 @@ const App = () => {
   }, []);
 
   const sortedData = Object.values(prospects)
-    ? Object.values(prospects).reduce<{ [key: string]: APIPerson[] }>((acc, curr) => {
+    ? Object.values(prospects).reduce<{ [key: string]: IProspect[] }>((acc, curr) => {
     return {
       ...acc,
       [curr.processStage]: [
@@ -58,39 +57,29 @@ const App = () => {
   }, {})
   : null;
 
-  const renderSwimlanes = () => Object.keys(processStages).map((swimlane, index) => {
+  const renderSwimLanes = () => Object.keys(processStages).map((swimlane, index) => {
     if (!sortedData) return null;
 
     return <Swimlane
       key={stages[index].value}
       title={stages[index].label}
       prospects={sortedData[stages[index].value]}
-      onClick={editCandidate}
-    ></Swimlane>
+    />
     }
   );
 
-  const editCandidate = (user: APIPerson) => () => {
-    setDrawerState('editCandidateDrawer', true);
-  }
-
-  const createCandidate = () => {
-    setDrawerState('editCandidateDrawer', true);
-    setProspect(true, defaultState.draftProspect);
-  }
-
   return (
     <StyledApp>
-      <EditCandidateDrawer active={candidateEditorDrawerActive} close={() => setDrawerActive(false)} />
+      <EditCandidateDrawer />
 
       <StyledHeader>
         <h1>Crowd Collective Candites</h1>
 
-        <Button label={'Add candidate'} onClick={createCandidate} />
+        <Button label={'Add candidate'} onClick={createProspect} />
       </StyledHeader>
 
       <StyledSwimlaneContainer>
-        { renderSwimlanes() }
+        { renderSwimLanes() }
       </StyledSwimlaneContainer>
     </StyledApp>
   )
