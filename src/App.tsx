@@ -13,6 +13,8 @@ import prospectsState, { IProspects } from './state/prospects';
 import useDraftProspect from "./hooks/useDraftProspect";
 import useEditCandidateDrawer from "./hooks/useEditCandidateDrawer";
 import useProspects from "./hooks/useProspects";
+import {DndProvider} from "react-dnd";
+import {HTML5Backend} from "react-dnd-html5-backend";
 
 interface ICandidatesObject {
   [key: string]: IProspect;
@@ -33,7 +35,6 @@ const App = () => {
   useEffect(() => {
     fetchProducts().then((res) => {
       setProspects(objectifyData(res));
-      console.log(res);
     });
   }, []);
 
@@ -54,6 +55,7 @@ const App = () => {
 
     return <Swimlane
       key={stages[index].value}
+      value={stages[index].value}
       title={stages[index].label}
       prospects={sortedData[stages[index].value]}
     />
@@ -70,9 +72,11 @@ const App = () => {
         <Button label={'Add candidate'} onClick={createProspect} />
       </StyledHeader>
 
-      <StyledSwimlaneContainer>
-        { renderSwimLanes() }
-      </StyledSwimlaneContainer>
+      <DndProvider backend={HTML5Backend}>
+        <StyledSwimlaneContainer>
+          { renderSwimLanes() }
+        </StyledSwimlaneContainer>
+      </DndProvider>
     </StyledApp>
   )
 }

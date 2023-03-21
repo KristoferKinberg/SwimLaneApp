@@ -2,16 +2,12 @@ import React from "react";
 import Drawer from "../../components/Drawer";
 import { Input, Select } from "../../components/Input";
 import { stages } from "../stages";
-import draftProspectState from '../../state/draftProspect'
-import {atom, useRecoilState} from "recoil";
 import Button from "../../components/Button";
-import prospectsState, { IProspects } from "../../state/prospects";
 import useDraftProspect from "../../hooks/useDraftProspect";
 import useEditCandidateDrawer from "../../hooks/useEditCandidateDrawer";
 
 const EditCandidateDrawer = () => {
   const { draftProspect, isNew, updateProspect } = useDraftProspect();
-  const [prospects, setProspects] = useRecoilState<IProspects>(prospectsState);
   const { visible, cancel, save } = useEditCandidateDrawer()
 
   const _updateDraftUser = (key: string) => (value: string) => {

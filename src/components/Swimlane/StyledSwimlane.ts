@@ -13,7 +13,7 @@ export const StyledSwimlane = styled.div`
 `;
 
 export const StyledSwimlaneTitle = styled.h4`
-  color: #666;
+  color: #555;
   margin: 0 0 20px 0 ;
   text-transform: capitalize;
 `

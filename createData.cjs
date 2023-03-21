@@ -1,5 +1,4 @@
 const fs = require('fs');
-const {generateID} = require("./src/utils/utils");
 
 const API_URL = "https://randomuser.me/api/"
 const API_RESULTS = 10
@@ -21,6 +20,8 @@ const dataAddition = {
     "finished"
   ]
 };
+
+const generateID = () => Math.floor(Math.random() * Date.now());
 
 const concatFields = () => INCLUDED_FIELDS.reduce((concatedFields, field, index) => {
   return `${concatedFields}${field}${INCLUDED_FIELDS.length !== (index + 1) ? ',' : ''}`;

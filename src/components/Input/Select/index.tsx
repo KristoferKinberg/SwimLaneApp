@@ -17,13 +17,13 @@ interface IProps {
 const Select = ({ label, onChange, selected, options }: IProps) => {
   const _onChange = ({ target: { value }}: React.ChangeEvent<HTMLSelectElement>) => onChange(value);
 
-  const renderRadioButtons = () =>
+  const renderOptions = () =>
     options.map(({ value, label }) => <option key={value} value={value}>{label}</option>);
 
   return <StyledInputWrapper>
     <StyledLabel>{label}</StyledLabel>
     <StyledSelect value={selected} onChange={_onChange}>
-      { renderRadioButtons() }
+      { renderOptions() }
     </StyledSelect>
   </StyledInputWrapper>
 };

@@ -9,6 +9,8 @@ export const StyledCard = styled.div`
   cursor: pointer;
   margin-bottom: 5px;
   
+  ${({ isDragging }: { isDragging: boolean }) => isDragging && 'opacity: 0;'}
+  
   ${boxShadow}
   ${greyBorder}
 `;

@@ -1,6 +1,6 @@
 import data from './data.json';
 import {generateID} from "./utils/utils";
-
+import prospects from "./state/prospects";
 
 export type IP = {
   title: string;
@@ -35,9 +35,8 @@ export const fetchProducts = async (): Promise<IProspect[]> => {
     }, 750);
   });
 };
-console.log(window.localStorage.getItem(CC_PROSPECTS))
 
-export const updateProspectReq = async (prospect: IProspect): Promise<IProspect> => {
+export const updateProspectReq = async (prospect: IProspect): Promise<IProspect[]> => {
   return await new Promise((resolve, reject) => {
     setTimeout(() => {
       const localStorageData = window.localStorage.getItem(CC_PROSPECTS);
@@ -45,18 +44,17 @@ export const updateProspectReq = async (prospect: IProspect): Promise<IProspect>
       const d = localStorageData
         ? JSON.parse(localStorageData)
         : data;
-      const newData = Object.values({
-        ...d,
-        [prospect.id]: prospect
-      });
 
-      console.log(newData)
+      const newData = d.map((p: IProspect) => {
+        if (p.id !== prospect.id) return p;
+        return prospect;
+      });
 
       window.localStorage.setItem(CC_PROSPECTS, JSON.stringify(newData));
       // @ts-ignore
       resolve(newData);
       reject({message: 'Error'});
-    }, 750);
+    }, 25);
   });
 };
 
@@ -68,23 +66,21 @@ export const createProspectReq = async (prospect: IP): Promise<IProspect> => {
         ? JSON.parse(localStorageData)
         : data;
 
-      const id = generateID()
-      const newData = Object.values({
+      const id = generateID();
+      const newProspect = {
+        ...prospect,
+        id,
+      };
+
+      window.localStorage.setItem(CC_PROSPECTS, JSON.stringify([
         ...d,
-        [id]: {
-          ...prospect,
-          id,
-        }
-      });
-
-      console.log(newData)
-
-      window.localStorage.setItem(CC_PROSPECTS, JSON.stringify(newData));
+        newProspect
+      ]));
 
       // @ts-ignore
-      resolve(newData);
+      resolve(prospect);
       reject({message: 'Error'});
-    }, 250);
+    }, 25);
   });
 }
 

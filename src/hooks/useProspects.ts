@@ -15,7 +15,7 @@ const useProspects = () => {
   return {
     prospects,
     saveProspect,
-    setProspects,
+    setProspects
   }
 };
 
