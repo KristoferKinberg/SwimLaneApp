@@ -18,7 +18,10 @@ lacks the scalability that redux possesses. This can of course be a result of my
 just feels a lot more able to handle large amounts of data to be edited. I felt this as the application grew, especially
 towards the end. 
 
-## Features I would have liked to implement
+Thanks for reading and reviewing!!
+// Kristofer
+
+## Features or changes I would have liked to implement
 1. Some form of statics, maybe average salary offered, successful recruitments and so on.
 2. Editing of users could've used some work. For example, you can't add an image, which would've been a very easy
     thing to implement, I just remembered it to late. 
@@ -43,7 +46,10 @@ towards the end.
     just like on remove.
 11. I didn't manage to find much time for cleaning up and refactoring stuff. There are a few things that could be cleaned,
     like the StartView, it's a bit to messy. Then there's a few places, for example in regard to modals, where code and 
-    CSS could've been reused instead. Such a shame..
+    CSS could've been reused instead. Such a shame...
+12. The script for generating fetching and generating prospects is a mess. I didn't spend any time at all making that nice, 
+    since it in a way isn't part of the application. In an actual application, there should of course have been an
+    actual backend in its place!
 
 ## Todo:
 
