@@ -1,14 +1,26 @@
 import styled from 'styled-components';
 
-export const StyledButton = styled.button`
+export enum ButtonTypes {
+  ERROR = '#FF6663',
+  ACCEPT = '#35CE8D',
+  WARNING = '#FFB20F',
+  DEFAULT = '#000'
+}
+
+interface IStyledButton {
+  buttonType: ButtonTypes;
+  onClick: () => any;
+}
+
+export const StyledButton = styled.button<IStyledButton>`
   align-items: center;
   background-color: #fff;
-  border: 2px solid #000;
+  border: 2px solid ${({ buttonType }) => buttonType};
   box-sizing: border-box;
-  color: #000;
+  color: ${({ buttonType }) => buttonType};
   cursor: pointer;
   display: inline-flex;
-  fill: #000;
+  fill: ${({ buttonType }) => buttonType};
   font-family: Inter,sans-serif;
   font-size: 16px;
   font-weight: 600;
@@ -42,12 +54,3 @@ export const StyledButton = styled.button`
     fill: #06f;
   }
 `;
-
-
-
-
-/**@media (min-width: 768px) {
-.button-59 {
-    min-width: 170px;
-  }
-}*/

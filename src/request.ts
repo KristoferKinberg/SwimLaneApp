@@ -10,6 +10,8 @@ export type IP = {
   email: string;
   processStage: string;
   address: string;
+  offer: number;  id: number;
+
 }
 
 export interface IProspect extends IP{

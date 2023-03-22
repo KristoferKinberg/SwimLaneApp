@@ -15,8 +15,8 @@ From https://randomuser.me/
 ## Todo:
 
 - [x] Add libs.
-- [ ] Create basic layout.
-- [ ] Create components: Card, Swimlane, SideModal, Button, Drawer, modal
+- [x] Create basic layout.
+- [x] Create components: Card, Swimlane, SideModal, Button, Drawer, Modal
 - [x] Create fake data and fetch function
 - [x] Implement drag and drop
 - [x] Create fake API requests implementing localstorage for persistent state.
@@ -24,11 +24,13 @@ From https://randomuser.me/
 - [x] Implement "create user" functionality
 - [x] Implement search
 - [ ] Implement sort
-- [ ] Set restrictions when moving to offer, prompt offer.
+- [x] Set restrictions when moving to offer, prompt offer.
 - [ ] Set restrictions when moving to finished, prompt result.
 - [x] Add ability to remove.
 - [ ] Indicate result for finished lane, hired or not.
 - [ ] Implement validation for inputs
+- [ ] Prevent moving several lanes at once.
+- [ ] Prompt on removal of prospect.
 
 # Log
 
@@ -71,13 +73,29 @@ If there is time left, i will implement delete as well. Mostly UI part that migh
 
 ---
 
-Had some issues with drag and drop, which turned out to be 
+Had some issues with drag and drop, which turned out to be errors in my somewhat hacky script
+for faking the backend. It's fixed though! 
 
 --- 
 
 Drag and drop implemented. Since time is running out, I'm going to mainly focus on requested features before we start
-getting creative. Do want some time to clean stuff up as well.
+getting creative. Do want some time to clean stuff up as well. Hope to find time to put some 
+restrictions in drag and drop as well. for example, I would like to restrict the moving 
+of a prospect across several swim lanes. It should be a stepped process. As it works currently,
+it will be difficult to stop user from moving from for example 'dialog' straight to 'finished'.
+If there is implementation in place for setting offer, this will in that case be completly skipped.
+A problem for future me! 
 
 ---
 
-Search and remove implemented aswell. 
+Search and remove implemented as well! This is great, because it means all requested features
+have been implemented. Next thing I will implement will be 'offer' functionality. In other words,
+when a user moves a prospect from 'interview' to 'offer', app should prompt user to insert what
+has been offered for candidate. Having offer could be fun, since you could start showing statistics
+and stuff! Doubt I will have time for implementing that however..
+
+--- 
+
+Okay, so we got the modal for adding offer in place, it works, all is well! Now we want to 
+add the restriction of skipping lanes! I have an idea, but also very little time. We'll se 
+what we can get done! As mentioned earlier, I would like some time to clean things up as well. 

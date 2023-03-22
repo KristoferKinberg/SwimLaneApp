@@ -3,12 +3,12 @@ import { useRecoilState } from "recoil";
 import {IProspect, removeProspectReq} from "../../request";
 import draftProspectState from "../../state/draftProspect";
 import {
-  StyledCard,
+  StyledCard, StyledCardBody,
   StyledCardColumn,
   StyledCardRow,
   StyledName,
   StyledProfilePicture,
-  StyledRemoveWrapper,
+  StyledRemoveWrapper, StyledSpan,
   StyledSwimlaneEmail
 } from "./StyledCard";
 import useEditCandidateDrawer from "../../hooks/useEditCandidateDrawer";
@@ -50,7 +50,15 @@ export const Card = ({ prospect }: IProps) => {
     firstname,
     lastname,
     email,
+    offer
   } = prospect;
+
+  const renderOffer = () => offer && <StyledCardRow>
+    <StyledCardBody>
+      <StyledSpan bold={true}>Salary offered: </StyledSpan>
+      <StyledSpan>{offer} kr</StyledSpan>
+    </StyledCardBody>
+  </StyledCardRow>
 
   return <StyledCard onClick={setProspect} ref={drag} isDragging={isDragging}>
     <StyledCardRow>
@@ -69,5 +77,7 @@ export const Card = ({ prospect }: IProps) => {
         <Trash2 color={'#333'} onClick={remove}/>
       </StyledRemoveWrapper>
     </StyledCardRow>
+
+    { renderOffer() }
   </StyledCard>
 };

@@ -1,4 +1,4 @@
-import Button from "../Button";
+import Button from "../Button/Button";
 import {
   StyledDrawer,
   StyledDrawerContainer,
@@ -9,24 +9,23 @@ import {
   StyledCloseButton, StyledDrawerTitle
 } from "./StyledDrawer";
 import {X} from "react-feather";
+import Overlay from "../Overlay/Overlay";
 
 interface IProps {
   active: boolean;
   children: JSX.Element;
   footer: JSX.Element;
-  onClose: () => any;
+  close: () => unknown;
   title?: string;
 }
 
-const Drawer = ({ active, children, footer, onClose, title = '' }: IProps) => {
-  //if (!active) return null;
-
+const Drawer = ({ active, children, footer, close, title = '' }: IProps) => {
   return <StyledDrawerContainer active={active}>
-    <StyledOverlay onClick={onClose} active={active}/>
+    <Overlay close={close} active={active} />
     <StyledDrawer active={active}>
       <StyledDrawerHeader>
         <StyledCloseButton>
-          <X onClick={onClose} />
+          <X onClick={close} />
         </StyledCloseButton>
 
         <StyledDrawerTitle>

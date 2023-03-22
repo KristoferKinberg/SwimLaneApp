@@ -3,7 +3,7 @@ import { IProspect } from "../request";
 
 export type IProspects = Record<number, IProspect>;
 
-export default atom({
+export default atom<IProspects>({
   key: 'prospects',
   default: {}
 });

@@ -14,16 +14,6 @@ export const StyledDrawerContainer = styled.div`
   bottom: 0;
 `;
 
-export const StyledOverlay = styled.div`
-  background: #000;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-
-  opacity: ${({ active }: { active: boolean}) => active ? .75 : 0};
-  transition: opacity .2s;
-`;
-
 export const StyledCloseButton = styled.span`
   cursor: pointer;
 `;
@@ -39,6 +29,7 @@ export const StyledDrawer = styled.div`
   flex-direction: column;
   right: ${({ active }: { active: boolean}) => active ? 0 : '-300px'};
   transition: right .2s;
+  z-index: 1;
 `;
 
 export const StyledDrawerHeader = styled.div`

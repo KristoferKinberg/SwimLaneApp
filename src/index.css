@@ -5,7 +5,7 @@ body, #root {
   min-height: 100vh;
 }
 
-body, button, html {
+body, button, html, span, p {
   color: #333;
   font-family: GratoGrotesk,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
 }

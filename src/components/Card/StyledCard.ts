@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { boxShadow, greyBorder } from '../../generalStyles';
+import exp from "constants";
 
 export const StyledCard = styled.div`
   background: #fff;
@@ -48,4 +49,17 @@ export const StyledRemoveWrapper = styled.div`
   display: flex;
   margin-left: 10px;
   width: 15px;
+`;
+
+export const StyledCardBody = styled.div`
+  margin-top: 10px;
+  flex: 1;
+  background-color: #f5f5f5;
+  padding: 5px;
+  border: 1px solid #cecece;
+`;
+
+export const StyledSpan = styled.span<{ bold?: boolean}>`
+  font-size: .8rem;
+  ${({ bold }) => bold && 'font-weight: 600;'}
 `;

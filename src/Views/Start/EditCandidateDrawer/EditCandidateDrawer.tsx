@@ -1,11 +1,11 @@
 import React from "react";
-import Drawer from "../../components/Drawer";
-import { Input, Select } from "../../components/Input";
-import { stages } from "../stages";
-import Button from "../../components/Button";
-import useDraftProspect from "../../hooks/useDraftProspect";
-import useEditCandidateDrawer from "../../hooks/useEditCandidateDrawer";
-import {CREATE, PROSPECT, UPDATE} from "../../constants";
+import Drawer from "../../../components/Drawer/Drawer";
+import { Input, Select } from "../../../components/Input/Input";
+import { stages } from "../../stages";
+import Button from "../../../components/Button/Button";
+import useDraftProspect from "../../../hooks/useDraftProspect";
+import useEditCandidateDrawer from "../../../hooks/useEditCandidateDrawer";
+import {CREATE, PROSPECT, UPDATE} from "../../../constants";
 
 const EditCandidateDrawer = () => {
   const { draftProspect, isNew, updateProspect } = useDraftProspect();
@@ -41,7 +41,7 @@ const EditCandidateDrawer = () => {
     ? `${CREATE} ${PROSPECT}`
     : `${UPDATE} ${PROSPECT}`;
 
-  return <Drawer active={visible} onClose={cancel} footer={renderButton()} title={getTitle()}>
+  return <Drawer active={visible} close={cancel} footer={renderButton()} title={getTitle()}>
     <>
       { renderInput('Firstname', 'firstname') }
       { renderInput('Lastname', 'lastname') }

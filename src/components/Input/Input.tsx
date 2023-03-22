@@ -1,4 +1,4 @@
-import Select from "./Select";
+import Select from "./Select/Select";
 import {StyledInput, StyledInputWrapper, StyledLabel } from "./StyledInput";
 import React from "react";
 

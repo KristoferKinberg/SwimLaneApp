@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {IProspect, fetchProducts} from "./request";
+import {IProspect, fetchProducts} from "../../request";
 import {
   StyledApp,
   StyledHeader,
@@ -7,25 +7,27 @@ import {
   StyledInputWrapper,
   StyledSwimlaneContainer,
   StyledTitle
-} from "./StyledApp";
-import './index.css';
-import { Swimlane } from "./components/Swimlane";
-import Button from "./components/Button";
-import Drawer from "./components/Drawer";
-import { processStages } from "./constants";
-import { stages } from "./Views/stages";
-import EditCandidateDrawer from "./Views/Start/EditCandidateDrawer";
-import draftProspectState, { defaultState } from './state/draftProspect';
-import prospectsState, { IProspects } from './state/prospects';
-import useDraftProspect from "./hooks/useDraftProspect";
-import useEditCandidateDrawer from "./hooks/useEditCandidateDrawer";
-import useProspects from "./hooks/useProspects";
+} from "../../StyledApp";
+import '../../index.css';
+import { Swimlane } from "../../components/Swimlane/SwimLane";
+import Button from "../../components/Button/Button";
+import Drawer from "../../components/Drawer/Drawer";
+import { processStages } from "../../constants";
+import { stages } from "../stages";
+import EditCandidateDrawer from "./EditCandidateDrawer/EditCandidateDrawer";
+import draftProspectState, { defaultState } from '../../state/draftProspect';
+import prospectsState, { IProspects } from '../../state/prospects';
+import useDraftProspect from "../../hooks/useDraftProspect";
+import useEditCandidateDrawer from "../../hooks/useEditCandidateDrawer";
+import useProspects from "../../hooks/useProspects";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
-import {Input} from "./components/Input";
+import {Input} from "../../components/Input/Input";
 import { Search } from 'react-feather';
+import Modal from "../../components/Modal/Modal";
+import OfferModal from "./OfferModal/OfferModal";
 
-const App = () => {
+const StartView = () => {
   const { draftProspect, isNew, setProspect } = useDraftProspect();
   const { prospects, setProspects } = useProspects();
   const { createProspect } = useEditCandidateDrawer();
@@ -85,6 +87,7 @@ const App = () => {
   return (
     <StyledApp>
       <EditCandidateDrawer />
+      <OfferModal />
 
       <StyledHeader>
         <StyledTitle>Crowd Collective Candidates</StyledTitle>
@@ -106,4 +109,4 @@ const App = () => {
   )
 }
 
-export default App
+export default StartView

@@ -6,7 +6,7 @@ interface IDraftProspect {
   draftProspect: IProspect;
 }
 
-const defaultState: IDraftProspect = {
+const defaultState = {
   isNew: true,
   draftProspect: {
     id: 0,
@@ -16,12 +16,11 @@ const defaultState: IDraftProspect = {
     picture: "",
     email: "",
     processStage: "",
-    dob: "",
     address: "",
   }
 };
 
-export default atom({
+export default atom<IDraftProspect>({
   key: 'draftProspect',
   default: defaultState,
 });
