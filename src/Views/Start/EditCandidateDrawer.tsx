@@ -5,6 +5,7 @@ import { stages } from "../stages";
 import Button from "../../components/Button";
 import useDraftProspect from "../../hooks/useDraftProspect";
 import useEditCandidateDrawer from "../../hooks/useEditCandidateDrawer";
+import {CREATE, PROSPECT, UPDATE} from "../../constants";
 
 const EditCandidateDrawer = () => {
   const { draftProspect, isNew, updateProspect } = useDraftProspect();
@@ -36,12 +37,14 @@ const EditCandidateDrawer = () => {
     ? <Button label={'Create'} onClick={save} />
     : <Button label={'Save'} onClick={save} />
 
+  const getTitle = () => isNew
+    ? `${CREATE} ${PROSPECT}`
+    : `${UPDATE} ${PROSPECT}`;
 
-  return <Drawer active={visible} onClose={cancel} footer={renderButton()}>
+  return <Drawer active={visible} onClose={cancel} footer={renderButton()} title={getTitle()}>
     <>
       { renderInput('Firstname', 'firstname') }
       { renderInput('Lastname', 'lastname') }
-      { renderInput('Age', 'age') }
       { renderInput('Email', 'email') }
       { renderInput('Address', 'address') }
 

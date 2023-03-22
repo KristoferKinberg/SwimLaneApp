@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const API_URL = "https://randomuser.me/api/"
-const API_RESULTS = 10
+const API_RESULTS = 50
 const API_SEED = "3c3b1938e7a5f2f0"
 const INCLUDED_FIELDS = [
   'name',

@@ -2,7 +2,15 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import {IProspect, removeProspectReq} from "../../request";
 import draftProspectState from "../../state/draftProspect";
-import { StyledCard, StyledCardColumn, StyledCardRow, StyledName, StyledProfilePicture, StyledSwimlaneEmail } from "./StyledCard";
+import {
+  StyledCard,
+  StyledCardColumn,
+  StyledCardRow,
+  StyledName,
+  StyledProfilePicture,
+  StyledRemoveWrapper,
+  StyledSwimlaneEmail
+} from "./StyledCard";
 import useEditCandidateDrawer from "../../hooks/useEditCandidateDrawer";
 import {ItemTypes} from "../../draggableItemTypes";
 import {useDrag} from "react-dnd";
@@ -47,19 +55,19 @@ export const Card = ({ prospect }: IProps) => {
   return <StyledCard onClick={setProspect} ref={drag} isDragging={isDragging}>
     <StyledCardRow>
       <StyledProfilePicture src={picture}/>
-      <StyledCardColumn>
-        <StyledCardRow>
+      <div style={{ display: 'flex', flex: 1, overflow: "hidden" }}>
+        <StyledCardColumn>
           <StyledName>
             { firstname } { lastname }
           </StyledName>
           <StyledSwimlaneEmail>
-            <Trash2 color={'#333'} size={13} onClick={remove}/>
+            { email }
           </StyledSwimlaneEmail>
-        </StyledCardRow>
-        <StyledSwimlaneEmail>
-          { email }
-        </StyledSwimlaneEmail>
-      </StyledCardColumn>
+        </StyledCardColumn>
+      </div>
+      <StyledRemoveWrapper>
+        <Trash2 color={'#333'} onClick={remove}/>
+      </StyledRemoveWrapper>
     </StyledCardRow>
   </StyledCard>
 };

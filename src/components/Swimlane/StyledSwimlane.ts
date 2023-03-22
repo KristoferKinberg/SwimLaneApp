@@ -5,7 +5,7 @@ export const StyledSwimlane = styled.div`
   background: #ebecf0;
   width: 250px;
   border-radius: 4px;
-  padding: 20px;
+  padding: 5px;
   margin: 0 3px;
 
   ${boxShadow}

@@ -5,3 +5,7 @@ export const processStages = {
   OFFER: "offer",
   FINISHED: "finished"
 };
+
+export const CREATE = 'create';
+export const UPDATE = 'update';
+export const PROSPECT = 'prospect';

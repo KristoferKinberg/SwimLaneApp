@@ -25,10 +25,6 @@ import {HTML5Backend} from "react-dnd-html5-backend";
 import {Input} from "./components/Input";
 import { Search } from 'react-feather';
 
-interface ICandidatesObject {
-  [key: string]: IProspect;
-}
-
 const App = () => {
   const { draftProspect, isNew, setProspect } = useDraftProspect();
   const { prospects, setProspects } = useProspects();
@@ -48,11 +44,14 @@ const App = () => {
     });
   }, []);
 
-  const applySearch = () => Object.values(prospects).filter(prospect => {
-    const { id, picture, ...rest } = prospect;
-    console.log(Object.values(rest).join('/'))
-    return Object.values(rest).join('/').includes(searchStr);
-  });
+  const applySearch = () => Object
+    .values(prospects)
+    .filter(({ id, picture, ...rest }) => Object
+      .values(rest)
+      .map(str => str.toLowerCase())
+      .join(' ')
+      .includes(searchStr.trim().toLowerCase())
+    );
 
   const searchedData = searchStr.length
     ? objectifyData(applySearch())
@@ -93,7 +92,7 @@ const App = () => {
           <StyledInputIconWrapper>
             <Search color={'#333'}/>
           </StyledInputIconWrapper>
-          <Input value={searchStr} onChange={setSearchStr} overrideStyles="border: 2px solid #333"/>
+          <Input value={searchStr} onChange={setSearchStr} overrideStyles="border: 2px solid #333" placeholder={'Search...'}/>
         </StyledInputWrapper>
         <Button label={'Add candidate'} onClick={createProspect} />
       </StyledHeader>

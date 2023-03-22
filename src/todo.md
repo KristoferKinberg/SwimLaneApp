@@ -16,17 +16,19 @@ From https://randomuser.me/
 
 - [x] Add libs.
 - [ ] Create basic layout.
-- [ ] Create components: Card, Swimlane, SideModal, Button, Drawer
+- [ ] Create components: Card, Swimlane, SideModal, Button, Drawer, modal
 - [x] Create fake data and fetch function
 - [x] Implement drag and drop
 - [x] Create fake API requests implementing localstorage for persistent state.
 - [x] Implement "edit user" functionality
 - [x] Implement "create user" functionality
-- [ ] Implement search
+- [x] Implement search
 - [ ] Implement sort
 - [ ] Set restrictions when moving to offer, prompt offer.
-- [ ] Add ability to remove.
+- [ ] Set restrictions when moving to finished, prompt result.
+- [x] Add ability to remove.
 - [ ] Indicate result for finished lane, hired or not.
+- [ ] Implement validation for inputs
 
 # Log
 
@@ -75,3 +77,7 @@ Had some issues with drag and drop, which turned out to be
 
 Drag and drop implemented. Since time is running out, I'm going to mainly focus on requested features before we start
 getting creative. Do want some time to clean stuff up as well.
+
+---
+
+Search and remove implemented aswell. 

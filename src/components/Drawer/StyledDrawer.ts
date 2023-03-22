@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
 export const StyledDrawerContainer = styled.div`
+  z-index: ${({ active }: { active: boolean}) => active ? 1 : -999};
+  ${({ active }: { active: boolean}) => !active && `
+    transition: z-index 200ms;
+    transition-delay: 200ms;
+  `};
+
   position: absolute;
   top: 0;
   right: 0;
@@ -10,15 +16,15 @@ export const StyledDrawerContainer = styled.div`
 
 export const StyledOverlay = styled.div`
   background: #000;
-  opacity: .75;
   width: 100%;
   height: 100%;
   position: absolute;
+
+  opacity: ${({ active }: { active: boolean}) => active ? .75 : 0};
+  transition: opacity .2s;
 `;
 
 export const StyledCloseButton = styled.span`
-  font-weight: bolder;
-  font-size: 1.5rem;
   cursor: pointer;
 `;
 
@@ -28,15 +34,24 @@ export const StyledDrawer = styled.div`
   max-width: 300px;
   width: 90%;
   position: absolute;
-  right: 0;
   align-items: stretch;
   display: flex;
   flex-direction: column;
+  right: ${({ active }: { active: boolean}) => active ? 0 : '-300px'};
+  transition: right .2s;
 `;
 
 export const StyledDrawerHeader = styled.div`
   height: 40px;
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const StyledDrawerTitle = styled.h3`
+  text-transform: capitalize;
+  font-weight: 900;
+  margin: 0;
 `;
 
 export const StyledDrawerBody = styled.div`

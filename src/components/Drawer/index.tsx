@@ -1,21 +1,37 @@
 import Button from "../Button";
-import { StyledDrawer, StyledDrawerContainer, StyledOverlay, StyledCloseButton, StyledDrawerHeader, StyledDrawerBody, StyledDrawerFooter} from "./StyledDrawer";
+import {
+  StyledDrawer,
+  StyledDrawerContainer,
+  StyledOverlay,
+  StyledDrawerHeader,
+  StyledDrawerBody,
+  StyledDrawerFooter,
+  StyledCloseButton, StyledDrawerTitle
+} from "./StyledDrawer";
+import {X} from "react-feather";
 
 interface IProps {
   active: boolean;
   children: JSX.Element;
   footer: JSX.Element;
   onClose: () => any;
+  title?: string;
 }
 
-const Drawer = ({ active, children, footer, onClose }: IProps) => {
-  if (!active) return null;
+const Drawer = ({ active, children, footer, onClose, title = '' }: IProps) => {
+  //if (!active) return null;
 
-  return <StyledDrawerContainer>
-    <StyledOverlay onClick={onClose} />
-    <StyledDrawer>
+  return <StyledDrawerContainer active={active}>
+    <StyledOverlay onClick={onClose} active={active}/>
+    <StyledDrawer active={active}>
       <StyledDrawerHeader>
-        <StyledCloseButton onClick={onClose}>X</StyledCloseButton>
+        <StyledCloseButton>
+          <X onClick={onClose} />
+        </StyledCloseButton>
+
+        <StyledDrawerTitle>
+          { title }
+        </StyledDrawerTitle>
       </StyledDrawerHeader>
 
       <StyledDrawerBody>

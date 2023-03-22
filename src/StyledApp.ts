@@ -6,14 +6,13 @@ export const StyledApp = styled.div`
   flex-direction: column;
   flex: 1;
   width: 100%;
-  max-height: 100vh;
 `;
 
 export const StyledSwimlaneContainer = styled.div`
   margin: 0 -5px;
   display: flex;
   overflow-y: auto;
-  padding: 0 20px;
+  padding: 0 20px 20px;
 `;
 
 export const StyledHeader = styled.header`

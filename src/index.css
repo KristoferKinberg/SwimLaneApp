@@ -1,9 +1,8 @@
 body, #root {
-  min-height: 100vh;
   margin: 0;
   display: flex;
   flex: 1;
-  max-width: 100vw;
+  min-height: 100vh;
 }
 
 body, button, html {

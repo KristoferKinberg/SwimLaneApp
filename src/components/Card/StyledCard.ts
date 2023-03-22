@@ -5,10 +5,8 @@ export const StyledCard = styled.div`
   background: #fff;
   padding: 5px;
   border-radius: 4px;
-  display: flex;
   cursor: pointer;
   margin-bottom: 5px;
-  width: 100%;
   
   ${({ isDragging }: { isDragging: boolean }) => isDragging && 'opacity: 0;'}
   
@@ -17,22 +15,18 @@ export const StyledCard = styled.div`
 `;
 
 export const StyledCardRow = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-between;
-  flex: 1;
+  display: inline-flex;
+  width: 100%;
 `;
 
 export const StyledCardColumn = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  flex: 1;
 `;
 
 export const StyledProfilePicture = styled.img`
   border-radius: 50%;
-  width: 40px;
   height: 40px;
 
   ${greyBorder}
@@ -47,4 +41,11 @@ export const StyledSwimlaneEmail = styled.span`
   color: #777;
   font-size: .8rem;
   margin: 0 0 0 10px;
+`;
+
+export const StyledRemoveWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  margin-left: 10px;
+  width: 15px;
 `;
