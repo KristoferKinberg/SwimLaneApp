@@ -5,13 +5,13 @@ import { stages } from "../../stages";
 import Button from "../../../components/Button/Button";
 import useDraftProspect from "../../../hooks/useDraftProspect";
 import useEditCandidateDrawer from "../../../hooks/useEditCandidateDrawer";
-import {CREATE, PROSPECT, UPDATE} from "../../../constants";
+import {CREATE, PROSPECT, SAVE, UPDATE} from "../../../constants";
 
 const EditCandidateDrawer = () => {
   const { draftProspect, isNew, updateProspect } = useDraftProspect();
   const { visible, cancel, save } = useEditCandidateDrawer()
 
-  const _updateDraftUser = (key: string) => (value: string) => {
+  const _updateDraftProspect = (key: string) => (value: string) => {
     if (!draftProspect) return;
 
     updateProspect({
@@ -26,7 +26,7 @@ const EditCandidateDrawer = () => {
     return <>
       <Input
         label={label}
-        onChange={_updateDraftUser(key)}
+        onChange={_updateDraftProspect(key)}
         // @ts-ignore
         value={draftProspect[key]}
       />
@@ -34,8 +34,8 @@ const EditCandidateDrawer = () => {
   }
 
   const renderButton = () => isNew
-    ? <Button label={'Create'} onClick={save} />
-    : <Button label={'Save'} onClick={save} />
+    ? <Button label={CREATE} onClick={save} />
+    : <Button label={SAVE} onClick={save} />
 
   const getTitle = () => isNew
     ? `${CREATE} ${PROSPECT}`
@@ -51,7 +51,7 @@ const EditCandidateDrawer = () => {
 
       <Select
         label='Stage'
-        onChange={_updateDraftUser('processStage')}
+        onChange={_updateDraftProspect('processStage')}
         selected={draftProspect.processStage}
         options={stages}
       />

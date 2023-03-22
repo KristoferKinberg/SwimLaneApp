@@ -18,16 +18,27 @@ export const Swimlane = ({ title, prospects, value }: IProps) => {
   const [allProspects, setProspects] = useRecoilState<IProspects>(prospectState);
   const { open } = useOfferModal();
 
+  const swimLaneProgression = Object
+    .values(processStages)
+    .reduce<{[key: string]: string}>((succObj, stage, index, arr) => ({
+      ...succObj,
+      [stage]: index - 1 !== arr.length
+        ? arr[index + 1]
+        : ''
+    }), {});
+
+  const disallowedLaneDrop = (prospect: IProspect) => swimLaneProgression[prospect.processStage] !== value
+
   const onDrop = (prospect: IProspect) => {
+    if (disallowedLaneDrop(prospect)) return;
+
     const updatedProspect = {
       ...prospect,
       processStage: value,
     };
 
-    if (value === processStages.OFFER) {
-      console.log('prospectState', value);
+    if (value === processStages.OFFER)
       return open(prospect);
-    }
 
     updateProspectReq(updatedProspect)
       .then((prospects) => setProspects(prospects));
