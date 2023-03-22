@@ -11,4 +11,5 @@ export const CANCEL = 'cancel';
 export const CREATE = 'create';
 export const UPDATE = 'update';
 export const PROSPECT = 'prospect';
-export const SALARY = 'salary'
+export const SALARY = 'salary';
+export const REMOVE = 'remove';

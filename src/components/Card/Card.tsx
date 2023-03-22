@@ -16,6 +16,7 @@ import {ItemTypes} from "../../draggableItemTypes";
 import {useDrag} from "react-dnd";
 import { Trash2 } from 'react-feather';
 import useProspects from "../../hooks/useProspects";
+import useRemoveModal from "../../hooks/removeModal";
 
 interface IProps {
   prospect: IProspect;
@@ -25,6 +26,7 @@ export const Card = ({ prospect }: IProps) => {
   if (!prospect) return null;
 
   const { setProspects } = useProspects();
+  const { open } = useRemoveModal();
 
   const [{isDragging}, drag] = useDrag(() => ({
     type: ItemTypes.CARD,
@@ -38,11 +40,16 @@ export const Card = ({ prospect }: IProps) => {
 
   const setProspect = () => updateProspect(prospect);
 
-  const remove = (e: React.MouseEvent<SVGElement>) => {
+  const _remove = (e: React.MouseEvent<SVGElement>) => {
     e.stopPropagation();
     removeProspectReq(prospect).then((prospects) => {
       setProspects(prospects);
     })
+  }
+
+  const _open = (e: React.MouseEvent<SVGElement>) => {
+    e.stopPropagation();
+    open(prospect);
   }
 
   const {
@@ -74,7 +81,7 @@ export const Card = ({ prospect }: IProps) => {
         </StyledCardColumn>
       </div>
       <StyledRemoveWrapper>
-        <Trash2 color={'#333'} onClick={remove}/>
+        <Trash2 color={'#333'} onClick={_open}/>
       </StyledRemoveWrapper>
     </StyledCardRow>
 

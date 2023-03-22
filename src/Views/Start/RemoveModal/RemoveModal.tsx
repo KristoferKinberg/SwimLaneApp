@@ -1,42 +1,36 @@
-import Modal from "../../../components/Modal/Modal";
 import useOfferModal from "../../../hooks/useOfferModal";
 import {useState} from "react";
 import {Input} from "../../../components/Input/Input";
+import {CANCEL, REMOVE, SALARY, SAVE} from "../../../constants";
 import Button from "../../../components/Button/Button";
-import {CANCEL, SALARY, SAVE} from "../../../constants";
 import {ButtonTypes} from "../../../components/Button/StyledButton";
+import Modal from "../../../components/Modal/Modal";
 import {StyledOfferModalFooter, StyledOfferModalContainer, StyledOfferModalContent } from "../../../components/Modal/StyledModal";
+import useRemoveModal from "../../../hooks/removeModal";
 
-const OfferModal = () => {
-  const { close, save, active, prospect } = useOfferModal();
-  const [offer, setOffer] = useState('');
+const RemoveModal = () => {
+  const { close, remove, active, prospect } = useRemoveModal();
 
   if (!prospect) return null;
 
   const { firstname, lastname } = prospect;
 
-  const _save = () => {
-    offer.length && save(parseInt(offer, 10));
-    setOffer('');
-  }
-
   const renderContent = () => <StyledOfferModalContainer>
-    <h3>Offer</h3>
+    <h3>Remove</h3>
 
     <StyledOfferModalContent>
-      <p>
-        Please provide offer made for { firstname } { lastname }:
-      </p>
-      <Input value={offer} onChange={setOffer} label={SALARY.toUpperCase()}/>
+      <span>
+        Are you sure you want to remove { firstname } { lastname }:
+      </span>
     </StyledOfferModalContent>
 
     <StyledOfferModalFooter>
-      <Button label={SAVE} onClick={_save} buttonType={ButtonTypes.ACCEPT}/>
+      <Button label={REMOVE} onClick={remove} buttonType={ButtonTypes.ACCEPT}/>
       <Button label={CANCEL} onClick={close} buttonType={ButtonTypes.ERROR}/>
     </StyledOfferModalFooter>
   </StyledOfferModalContainer>;
 
-  return <Modal close={close} active={active} content={renderContent()} height={250} />
+  return <Modal close={close} active={active} content={renderContent()} height={175} />;
 }
 
-export default OfferModal;
+export default RemoveModal;

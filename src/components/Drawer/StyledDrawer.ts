@@ -7,7 +7,7 @@ export const StyledDrawerContainer = styled.div`
     transition-delay: 200ms;
   `};
 
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;

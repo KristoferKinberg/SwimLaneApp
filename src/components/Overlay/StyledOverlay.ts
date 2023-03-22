@@ -4,7 +4,7 @@ export const StyledOverlay = styled.div`
   background: #000;
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
 
   z-index: ${({ active }: { active: boolean}) => active ? 1 : -999};
   ${({ active }: { active: boolean}) => !active && `

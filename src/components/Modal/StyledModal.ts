@@ -26,3 +26,17 @@ export const StyledModal = styled.div<IStyledModal>`
     transition-delay: 200ms;
   `};
 `;
+
+export const StyledOfferModalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const StyledOfferModalContent = styled.div`
+  flex: 1;
+`;
+
+export const StyledOfferModalFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
