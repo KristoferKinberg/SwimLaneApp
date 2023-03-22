@@ -7,6 +7,7 @@ import {useRecoilState} from "recoil";
 import prospectState, {IProspects} from "../../state/prospects";
 import {processStages} from "../../constants";
 import useOfferModal from "../../hooks/useOfferModal";
+import useProspectResultModal from "../../hooks/useProspectResultModal";
 
 interface IProps {
   title: string;
@@ -16,7 +17,8 @@ interface IProps {
 
 export const Swimlane = ({ title, prospects, value }: IProps) => {
   const [allProspects, setProspects] = useRecoilState<IProspects>(prospectState);
-  const { open } = useOfferModal();
+  const { open: openOfferModal } = useOfferModal();
+  const { open: openProspectResultModal } = useProspectResultModal();
 
   const swimLaneProgression = Object
     .values(processStages)
@@ -27,7 +29,7 @@ export const Swimlane = ({ title, prospects, value }: IProps) => {
         : ''
     }), {});
 
-  const disallowedLaneDrop = (prospect: IProspect) => swimLaneProgression[prospect.processStage] !== value
+  const disallowedLaneDrop = (prospect: IProspect) => swimLaneProgression[prospect.processStage] !== value;
 
   const onDrop = (prospect: IProspect) => {
     if (disallowedLaneDrop(prospect)) return;
@@ -38,7 +40,10 @@ export const Swimlane = ({ title, prospects, value }: IProps) => {
     };
 
     if (value === processStages.OFFER)
-      return open(prospect);
+      return openOfferModal(prospect);
+
+    if (value === processStages.FINISHED)
+      return openProspectResultModal(prospect);
 
     updateProspectReq(updatedProspect)
       .then((prospects) => setProspects(prospects));

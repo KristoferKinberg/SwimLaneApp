@@ -2,14 +2,14 @@ import styled from 'styled-components';
 import { boxShadow, greyBorder } from '../../generalStyles';
 import exp from "constants";
 
-export const StyledCard = styled.div`
+export const StyledCard = styled.div<{ isDragging: boolean }>`
   background: #fff;
   padding: 5px;
   border-radius: 4px;
   cursor: pointer;
   margin-bottom: 5px;
   
-  ${({ isDragging }: { isDragging: boolean }) => isDragging && 'opacity: 0;'}
+  ${({ isDragging }) => isDragging && 'opacity: 0;'}
   
   ${boxShadow}
   ${greyBorder}
@@ -54,6 +54,10 @@ export const StyledRemoveWrapper = styled.div`
 export const StyledCardBody = styled.div`
   margin-top: 10px;
   flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  display: flex;
   background-color: #f5f5f5;
   padding: 5px;
   border: 1px solid #cecece;
@@ -62,4 +66,12 @@ export const StyledCardBody = styled.div`
 export const StyledSpan = styled.span<{ bold?: boolean}>`
   font-size: .8rem;
   ${({ bold }) => bold && 'font-weight: 600;'}
+`;
+
+export const StyledHireResult = styled.div<{hired: number}>`
+  width: 10px;
+  height: 10px;
+  background-color: ${({ hired }) => !!hired ? '#35CE8D' : '#FF4B3E' };
+  border-radius: 50%;
+  border: 1px solid #555;
 `;

@@ -27,6 +27,7 @@ import { Search } from 'react-feather';
 import Modal from "../../components/Modal/Modal";
 import OfferModal from "./OfferModal/OfferModal";
 import RemoveModal from "./RemoveModal/RemoveModal";
+import ProspectResultModal from "./ProspectResultModal/ProspectResultModal";
 
 const StartView = () => {
   const { draftProspect, isNew, setProspect } = useDraftProspect();
@@ -49,7 +50,7 @@ const StartView = () => {
 
   const applySearch = () => Object
     .values(prospects)
-    .filter(({ id, picture, ...rest }) => Object
+    .filter(({ id, picture, hired, ...rest }) => Object
       .values(rest)
       .map(str => typeof str === 'string'
           ? str.toLowerCase()
@@ -92,6 +93,7 @@ const StartView = () => {
       <EditCandidateDrawer />
       <OfferModal />
       <RemoveModal />
+      <ProspectResultModal />
 
       <StyledHeader>
         <StyledTitle>Crowd Collective Candidates</StyledTitle>

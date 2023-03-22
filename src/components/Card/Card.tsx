@@ -5,7 +5,7 @@ import draftProspectState from "../../state/draftProspect";
 import {
   StyledCard, StyledCardBody,
   StyledCardColumn,
-  StyledCardRow,
+  StyledCardRow, StyledHireResult,
   StyledName,
   StyledProfilePicture,
   StyledRemoveWrapper, StyledSpan,
@@ -57,13 +57,21 @@ export const Card = ({ prospect }: IProps) => {
     firstname,
     lastname,
     email,
-    offer
+    offer,
+    hired
   } = prospect;
+
+  const renderHireResult = () => typeof hired === 'number' && <StyledHireResult hired={hired}/>;
 
   const renderOffer = () => offer && <StyledCardRow>
     <StyledCardBody>
-      <StyledSpan bold={true}>Salary offered: </StyledSpan>
-      <StyledSpan>{offer} kr</StyledSpan>
+      <div>
+        <StyledSpan bold={true}>Offered: </StyledSpan>
+        <StyledSpan>{offer} kr</StyledSpan>
+      </div>
+      <div>
+        { renderHireResult() }
+      </div>
     </StyledCardBody>
   </StyledCardRow>
 

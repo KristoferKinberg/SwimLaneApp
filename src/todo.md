@@ -29,8 +29,8 @@ From https://randomuser.me/
 - [x] Add ability to remove.
 - [ ] Indicate result for finished lane, hired or not.
 - [ ] Implement validation for inputs
-- [ ] Prevent moving several lanes at once.
-- [ ] Prompt on removal of prospect.
+- [x] Prevent moving several lanes at once.
+- [x] Prompt on removal of prospect.
 
 # Log
 
@@ -99,3 +99,16 @@ and stuff! Doubt I will have time for implementing that however..
 Okay, so we got the modal for adding offer in place, it works, all is well! Now we want to 
 add the restriction of skipping lanes! I have an idea, but also very little time. We'll se 
 what we can get done! As mentioned earlier, I would like some time to clean things up as well. 
+
+--- 
+
+We now have a modal making sure that you dont delete stuff accidentally. If I had more time, I would refactor 
+the modals. They ended up being a lot of duplicated code which is a shame. Would have loved to implement some form
+of higher order component to keep it DRY.
+
+---
+
+Prevention of lane-skipping implemented! Works kind of neet, would however loved to make the "dissallowed" greyed out 
+or lowered their opacity or whatever, to show they are not dropable. However, want to focus on adding some indication 
+of result for the "finished" swim lane and then finish it all up with some cleaning of the code. We'll see what we'll 
+manage! 

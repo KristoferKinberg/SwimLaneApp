@@ -13,3 +13,5 @@ export const UPDATE = 'update';
 export const PROSPECT = 'prospect';
 export const SALARY = 'salary';
 export const REMOVE = 'remove';
+export const YES = 'yes';
+export const NO = 'no';

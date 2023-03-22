@@ -38,23 +38,25 @@ const getRandomNumber = ({ min = 0, max }) => {
 }
 
 const createData = async () => {
-  const isInLastStages = (stage) => [
+  const lastTwo = [
     "offer",
     "finished"
-  ].includes(stage);
+  ];
+  const lastOne = ["finished"];
+
+  const isInStages = (stage, stages) => stages.includes(stage);
 
   const res = await fetchAPIPersons()
   const data = res.map((user, index) => {
     const randomNumber = getRandomNumber({ max: dataAddition.processStage.length - 1});
     const userRecruitmentStage = dataAddition.processStage[randomNumber];
 
-
     return {
       ...user,
       id: generateID(),
       processStage: userRecruitmentStage
     }
-  })
+  });
 
   const cleanedData = data.map(({ id, name, picture, email, adress, processStage, location }) => ({
     id,
@@ -64,7 +66,8 @@ const createData = async () => {
     email,
     processStage,
     address: `${location.street.name} ${location.street.number}`,
-    ...isInLastStages(processStage) && { offer: getRandomNumber({ min: 22000, max: 85000 })}
+    ...isInStages(processStage, lastTwo) && { offer: getRandomNumber({ min: 22000, max: 85000 })},
+    ...isInStages(processStage, lastOne) && { hired: getRandomNumber({ min: 0, max: 1 })}
   }));
 
   fs.writeFile('./src/data.json', JSON.stringify(cleanedData), err => {

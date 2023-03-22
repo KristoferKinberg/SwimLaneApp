@@ -11,7 +11,7 @@ export type IP = {
   processStage: string;
   address: string;
   offer: number;  id: number;
-
+  hired: number | null;
 }
 
 export interface IProspect extends IP{
