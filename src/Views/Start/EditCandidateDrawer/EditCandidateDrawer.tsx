@@ -47,6 +47,7 @@ const EditCandidateDrawer = () => {
       { renderInput('Lastname', 'lastname') }
       { renderInput('Email', 'email') }
       { renderInput('Address', 'address') }
+      { draftProspect.offer && renderInput('Offer', 'offer') }
 
       <Select
         label='Stage'
